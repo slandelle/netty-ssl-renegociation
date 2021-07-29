@@ -1,4 +1,4 @@
-# Reproducer demonstrating https://github.com/netty/netty/issues/11505
+# Reproducer demonstrating issue with Netty + BoringSSL wrt SSL renegociation
 
 ## With `TLSv1.2` and `SslProvider.OPENSSL`
 
@@ -7,11 +7,11 @@
 * Stop WireShark
 * filter packets based on address displayed in the logs: `ip.addr == <ADDRESS>
 
-Observe the `ClientHello` and `ServerHello` payloads: the second `ClientHello` always has `Session ID Length: 0` even though the previous `ServerHello` provided a SessionID.
+See how connection is crashing.
 
 ## With `TLSv1.2` and `SslProvider.JDK`
 
 * Change to `SslProvider.JDK`
 * Same as above
 
-Observe that the second `ClientHello` as a proper Session ID
+Observe that request works fine (400/Bad Request, but that's another story)
