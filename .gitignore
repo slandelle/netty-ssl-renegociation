@@ -1,0 +1,6 @@
+
+.DS_Store
+.gitattributes
+.idea
+target
+*.iml
